@@ -345,11 +345,4 @@ src_install() {
     # Install the configuration file as a dropin.
     systemd_install_dropin "${PN}.service" "${FILESDIR}/${PN}.service.conf"
   fi
-
-  # Optionally install the OpenRC init script.
-  if use openrc; then
-      insinto /etc/init.d
-      doins "${FILESDIR}/${PN}".init
-      fperms +x "${D}/etc/init.d/${PN}.init"
-  fi
 }
