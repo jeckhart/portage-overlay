@@ -343,6 +343,8 @@ src_install() {
     systemd_dounit "${FILESDIR}/${PN}.service"
 
     # Install the configuration file as a dropin.
-    systemd_install_dropin "${PN}.service" "${FILESDIR}/${PN}.service.conf"
+    systemd_install_serviced "${FILESDIR}/${PN}.service.conf"
+    # Since we want to put auth stuff in this file, set it to not be world readable
+    fperms 0600 /etc/systemd/system/"${PN}".service.d/00gentoo.conf
   fi
 }
